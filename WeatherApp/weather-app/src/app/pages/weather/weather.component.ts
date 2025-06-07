@@ -16,15 +16,15 @@ export class WeatherComponent {
 
   constructor(private weatherService: WeatherService) {}
 
-  getCurrentCityForecastWeather() {
+  getCurrentCityForecastWeather(city: string) {
     if (!this.city) return;
 
-    this.weatherService.getCurrentWeatherAsync().subscribe({
+    this.weatherService.getCurrentWeatherAsync(city).subscribe({
       next: (data) => {
         this.weather = data;
         this.errorMessage = '';
       },
-      error: (error) => {
+      error: () => {
         this.weather = null,
         this.errorMessage = "Erro ao buscar o clima. Verifique e tent novamente";
       }
