@@ -19,7 +19,7 @@ namespace WeatherAppAPI.Services
             _config = config;
         }
 
-        public async Task<ServiceResponse<CurrentWeatherDto>> GetWeatherAsync(string cityName)
+        public async Task<ServiceResponse<CurrentWeatherDto>> GetCurrentWeatherAsync(string cityName)
         {
             string apiKey = _config["OpenWeather:ApiKey"];
             string url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric&lang=pt_br";
@@ -65,7 +65,7 @@ namespace WeatherAppAPI.Services
 
         }
 
-        public async Task<ServiceResponse<List<WeatherAllDayDto>>> GetForecastWeatherForFiveDays(string cityName)
+        public async Task<ServiceResponse<List<WeatherAllDayDto>>> GetForecastWeatherForFiveDaysAsync(string cityName)
         {
             string apiKey = _config["OpenWeather:ApiKey"];
             string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}&units=metric&lang=pt_br";
