@@ -2,10 +2,10 @@
 
 namespace WeatherAppAPI.Interfaces
 {
-    public interface IFavoriteCity
+    public interface IFavoriteCityRepository
     {
-        Task<List<FavoriteCity>> ListFavCitiesAsync();
-        Task<FavoriteCity> GetFavoriteCityAsync();
+        Task<ServiceResponse<List<FavoriteCity>>> ListFavCitiesAsync();
+        Task<ServiceResponse<FavoriteCity>> GetFavoriteCityAsync();
         Task AddFavoriteCityAsync(FavoriteCity city);
         Task RemoveFavoriteCityAsync(FavoriteCity city);
     }
