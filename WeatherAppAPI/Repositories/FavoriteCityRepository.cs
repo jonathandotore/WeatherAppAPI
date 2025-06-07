@@ -12,7 +12,6 @@ namespace WeatherAppAPI.Repositories
         public FavoriteCityRepository(AppDbContext context)
             => _context = context;
 
-
         public async Task<ServiceResponse<List<FavoriteCity>>> ListFavCitiesAsync()
         {
             ServiceResponse<List<FavoriteCity>> response = new();
