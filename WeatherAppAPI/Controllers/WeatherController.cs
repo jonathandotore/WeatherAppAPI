@@ -21,7 +21,7 @@ namespace WeatherAppAPI.Controllers
         /// </summary>
         /// <param name="city">City Name</param>
         /// <returns>Weather forescast for current city</returns>
-        [HttpGet("currentcity")]
+        [HttpGet("currentcity/{city}")]
         public async Task<ActionResult<ServiceResponse<CurrentWeatherDto>>> GetCurrentWeatherAsync(string city)
         {
             if (string.IsNullOrEmpty(city))
