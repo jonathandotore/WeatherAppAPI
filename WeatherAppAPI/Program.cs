@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WeatherAppAPI.Data;
 using WeatherAppAPI.Interfaces;
 using WeatherAppAPI.Repositories;
+using WeatherAppAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,19 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 // Injeção de dependência
 builder.Services.AddScoped<IFavoriteCityRepository, FavoriteCityRepository>();
+builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddHttpClient<IWeatherService, WeatherService>();
+
+// CORS
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyMethod();
+        policy.AllowAnyMethod();
+    });
+});
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 
