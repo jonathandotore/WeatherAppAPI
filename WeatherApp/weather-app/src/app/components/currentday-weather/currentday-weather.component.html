@@ -2,14 +2,14 @@
   <div class="w-full max-w-6xl bg-sky-100 bg-opacity-20 shadow-lg rounded-lg p-6 md:p-8">
     <section class="mb-8 text-center">
       <h1 class="text-3xl md:text-4xl font-semibold text-gray-500 mb-2">
-        <span class="text-gray-500">Clima hoje em</span> {{ city }}, Brasil
+        <span class="text-gray-500">Clima agora em</span> {{ city }},
       </h1>
-      <p class="text-gray-500 text-lg md:text-xl"> Hoje, 8 de Junho</p>
+      <p class="text-gray-500 text-lg md:text-xl">8 de Junho</p>
 
       <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
         <img [src]="'https://openweathermap.org/img/wn/' + forecast.icon + '.png'" alt="" class="w-20 h-20 md:w-24 md:h-24">
         <div class="flex flex-col items-center md:items-start">
-          <p class="text-6xl md:text-7xl font-light text-gray-500">{{ forecast.temperature.toFixed(0) }} ºC</p>
+          <p class="text-6xl md:text-7xl font-light text-gray-500">{{ forecast.temperature.toFixed(0) }}ºC</p>
           <p class="text-2xl md:text-3xl text-gray-500"> {{ forecast.condition }}</p>
         </div>
       </div>

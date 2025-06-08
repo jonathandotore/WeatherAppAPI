@@ -8,7 +8,7 @@
             <p class="text-sm font-medium text-gray-500 mb-4">{{ day.date | date:'fullDate' }}</p>
             <img [src]="'https://openweathermap.org/img/wn/' + '.png'" alt="" class="w-16 h-16 mb-2">
             <p class="text-gray-600 text-sm  m-4">{{ day.condition }}</p>
-            <p class="text-xl font-medium text-gray-500"> Máx: <span class="text-red-600">{{ day.maxTemperature.toFixed(0) }}°C</span> <br> Mín: <span class="text-cyan-600">{{ day.minTemperature.toFixed(0) }}°C</span>
+            <p class="text-xl font-medium text-gray-500"> Máx: <span class="text-red-600">↑ {{ day.maxTemperature.toFixed(0) }}°</span> <br> Mín: <span class="text-cyan-600">↓ {{ day.minTemperature.toFixed(0) }}°</span>
             </p>
           </div>
         </li>
