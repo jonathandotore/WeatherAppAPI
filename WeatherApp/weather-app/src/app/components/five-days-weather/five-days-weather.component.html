@@ -1,0 +1,13 @@
+<h2>Previsão de 5 dias para {{ city }}</h2>
+
+<div *ngIf="loading">Carregando previsão...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<ul *ngIf="!loading && forecast.length">
+  <li *ngFor="let day of forecast">
+    <strong>{{ day.date | date:'fullDate' }}</strong> -
+    {{ day.condition }} |
+    Mín: {{ day.minTemperature }}°C |
+    Máx: {{ day.maxTemperature }}°C
+  </li>
+</ul>
