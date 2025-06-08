@@ -19,12 +19,12 @@ export class WeatherService {
   getCurrentWeatherAsync(city: string): Observable<CurrentWeatherDto> {
     return this.http
       .get<ServiceResponse<CurrentWeatherDto>>(`${this.baseUrl}/${city}`)
-      .pipe(map((response: { data: any; }) => response.data));
+      .pipe(map((response) => response.data));
   }
 
   getFiveDaysForecast(city: string): Observable<FiveDaysWeatherDto[]> {
     return this.http
       .get<ServiceResponse<FiveDaysWeatherDto[]>>(`${this.baseUrl}/weatherforecastfivedays/${city}`)
-      .pipe(map((response: { data: any; }) => response.data));
+      .pipe(map((response) => response.data));
   }
 }
