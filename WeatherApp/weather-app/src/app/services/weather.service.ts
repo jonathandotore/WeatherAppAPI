@@ -12,13 +12,13 @@ import { ServiceResponse } from '../../models/service-response';
 
 export class WeatherService {
   
-  private baseUrl = "https://localhost:5198/api/weather/currentcity";
+  private baseUrl = "http://localhost:5198/api/Weather";
 
   constructor(private http: HttpClient) {}
 
   getCurrentWeatherAsync(city: string): Observable<CurrentWeatherDto> {
     return this.http
-      .get<ServiceResponse<CurrentWeatherDto>>(`${this.baseUrl}/${city}`)
+      .get<ServiceResponse<CurrentWeatherDto>>(`${this.baseUrl}/currentcity/${city}`)
       .pipe(map((response) => response.data));
   }
 
