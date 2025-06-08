@@ -4,6 +4,7 @@ import { WeatherService } from '../../services/weather.service';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SearchCityService } from '../../shared/search-city.service';
+import { ServiceResponse } from '../../../models/service-response';
 
 @Component({
   selector: 'app-currentday-weather',
@@ -17,6 +18,7 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
   
   forecast: CurrentWeatherDto = {} as CurrentWeatherDto;
   city: string = 'São José do Rio Preto';
+  lastSuccessfulCity: string = 'São José do Rio Preto';
   loading: boolean = false;
   error: string = '';
 
@@ -47,10 +49,12 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
       this.apiCallSubscription.unsubscribe();
 
     this.apiCallSubscription = this.weatherService.getCurrentWeatherAsync(this.city).subscribe({
-      next: (data) => {
+      next: (data: CurrentWeatherDto | null) => {
+        if (data !== null && data !== undefined)
         this.forecast = data;
+        this.lastSuccessfulCity = this.city
         this.loading = false;
-        console.log(`Clima atual para ${this.city}:`, data)
+        console.log(`Clima atual para ${this.city}:`,data)
       },
       error: (err) => {
         console.error(`Erro ao buscar clima para ${this.city}:`, err);

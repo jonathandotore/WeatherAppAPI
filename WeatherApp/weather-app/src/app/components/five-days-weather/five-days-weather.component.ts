@@ -16,6 +16,7 @@ export class FiveDaysWeatherComponent implements OnInit, OnDestroy {
 
   forecast: FiveDaysWeatherDto[] = [];
   city: string = 'São José do Rio Preto';
+  lastSuccessfulCity: string = 'São José do Rio Preto';
   loading: boolean = false;
   error: string = '';
 
@@ -47,9 +48,12 @@ export class FiveDaysWeatherComponent implements OnInit, OnDestroy {
       this.apiCallSubscription.unsubscribe();
 
     this.apiCallSubscription = this.weatherService.getFiveDaysForecast(this.city).subscribe({
-      next: (data) => {
+      next: (data: FiveDaysWeatherDto[] | null) => {
+        if (data !== null && data !== undefined)
         this.forecast = data;
+        this.lastSuccessfulCity = this.city;
         this.loading = false;
+        this.error = '';
         console.log(`Previsão de 5 dias para ${this.city}:`, data);
       },
       error: (err) => {
