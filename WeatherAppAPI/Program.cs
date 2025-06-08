@@ -44,11 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAll");
-<<<<<<< HEAD
-app.UseHttpsRedirection();
-=======
 //app.UseHttpsRedirection();
->>>>>>> WeatherApp.Angular
 app.UseAuthorization();
 app.MapControllers();
 

@@ -13,19 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WeatherAppAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fe7d8348ff0279562f9819d9ebef929aa44770a")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3cede9791012d515746e5d39a5eff794c08fcd7")]
->>>>>>> Stashed changes
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d0e2c1dd84bc51b4a2c5b9e4fae62b788d961df")]
->>>>>>> WeatherApp.Angular
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+544a0b6aa1c03e639ce69d4700d22465c0bbfcae")]
->>>>>>> WeatherApp.Angular
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db4fe2d482172c1376159a58fac1f6693429ed90")]
 [assembly: System.Reflection.AssemblyProductAttribute("WeatherAppAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WeatherAppAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
