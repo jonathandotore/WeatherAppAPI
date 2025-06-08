@@ -1,12 +1,42 @@
-<h2>Clima hoje em {{ city }}</h2>
+<div class="min-h-screen bg-blue-50 p-4 sm:p-6 md:p-8 flex flex-col items-center">
 
-<div *ngIf="loading">Carregando previsão...</div>
-<div *ngIf="error">{{ error }}</div>
+  <div class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 md:p-8">
 
-<div>
-    <span>{{forecast.cityName}}, {{forecast.temperature}} ºC</span><br>
-    <span>Miníma: {{forecast.minTemperature}} ºC/ Máxima: {{forecast.maxTemperature}} ºC</span><br>
-    <span><img [src]="'https://openweathermap.org/img/wn/' + forecast.icon + '.png'" alt=""> - {{forecast.condition}}</span><br>
-    <span>Humidade: {{forecast.humidity}}%</span>
+    <section class="mb-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        <span class="text-blue-600">Clima hoje em</span> {{ city }}, Brasil
+      </h1>
+      <p class="text-gray-600 text-lg md:text-xl">Hoje, 8 de Junho</p>
+
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6">
+        <img [src]="'https://openweathermap.org/img/wn/' + forecast.icon + '.png'" alt="" class="w-24 h-24 md:w-32 md:h-32">
+        <div class="flex flex-col items-center md:items-start">
+          <p class="text-6xl md:text-7xl font-light text-blue-700">{{forecast.temperature}} ºC</p>
+          <p class="text-2xl md:text-3xl text-gray-600">Parcialmente Nublado</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-700">
+        <div class="flex flex-col items-center">
+          <span class="text-xl font-medium">Umidade</span>
+          <span class="text-2xl">{{forecast.humidity}}%</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-xl font-medium">Vento</span>
+          <span class="text-2xl">15 km/h</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-xl font-medium">Sensação</span>
+          <span class="text-2xl">27°C</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-xl font-medium">Índice UV</span>
+          <span class="text-2xl">8 (Alto)</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="my-8 border-gray-200">
+
+  </div>
 </div>
-
