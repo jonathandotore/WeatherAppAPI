@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class FiveDaysWeatherComponent implements OnInit {
 
   forecast: FiveDaysWeatherDto[] = [];
-  city: string = 'São Paulo';
+  city: string = 'São José do Rio Preto';
   loading: boolean = false;
   error: string = '';
 

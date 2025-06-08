@@ -1,13 +1,18 @@
-<h2>Previsão de 5 dias para {{ city }}</h2>
-
-<div *ngIf="loading">Carregando previsão...</div>
-<div *ngIf="error">{{ error }}</div>
-
-<ul *ngIf="!loading && forecast.length">
-  <li *ngFor="let day of forecast">
-    <strong>{{ day.date | date:'fullDate' }}</strong> -
-    {{ day.condition }} |
-    Mín: {{ day.minTemperature }}°C |
-    Máx: {{ day.maxTemperature }}°C
-  </li>
-</ul>
+<div class="p-4 sm:p-6 md:p-8 flex flex-col items-center">
+  <h2 class="text-2xl md:text-3xl font-med text-gray-500 mb-4 text-center">Previsão para os próximos 5 dias em {{ city }} </h2>
+  <div class="w-full max-w-6xl bg-sky-100 bg-opacity-20 shadow-lg rounded-lg p-6 md:p-8">
+    <ul *ngIf="!loading && forecast.length">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <li *ngFor="let day of forecast">
+          <div class="bg-none p-4 rounded-lg shadow-md border-red-200 flex flex-col items-center text-center">
+            <p class="text-sm font-medium text-gray-500 mb-4">{{ day.date | date:'fullDate' }}</p>
+            <img [src]="'https://openweathermap.org/img/wn/' + '.png'" alt="" class="w-16 h-16 mb-2">
+            <p class="text-gray-600 text-sm  m-4">{{ day.condition }}</p>
+            <p class="text-xl font-medium text-gray-500"> Máx: <span class="text-red-600">{{ day.maxTemperature.toFixed(0) }}°C</span> <br> Mín: <span class="text-cyan-600">{{ day.minTemperature.toFixed(0) }}°C</span>
+            </p>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
