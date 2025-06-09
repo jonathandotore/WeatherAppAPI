@@ -1,0 +1,69 @@
+<div class="p-4 sm:p-6 md:p-8 flex flex-col items-center">
+    <div class="w-full max-w-6xl bg-sky-100 bg-opacity-20 shadow-lg rounded-lg p-6 md:p-8">
+        <div class="search-container">
+            <input type="text" class="w-4/6
+            mr-8 
+            flex-grow 
+            p-3 
+            bg-transparent 
+            border border-violet-400 
+            rounded-lg 
+            text-lg text-gray-500 
+            placeholder-gray-500
+            focus:ring-1
+            focus:outline-violet-900
+            focus:ring-violet-900 
+            focus:border-violet-900
+            transition-all duration-300 ease-in-out" [formControl]="searchControl" placeholder="Pesquisar cidade..."
+                (keyup.enter)="onSearch()">
+
+            <button class="ml-4
+            px-6 
+            py-3 
+            bg-none
+            text-gray-500 
+            font-semibold 
+            rounded-lg 
+            shadow-md 
+            border border-violet-400
+            outline-lime-900
+            hover:bg-sky-100
+            focus:outline-none 
+            focus:ring-2 
+            focus:ring-blue-500
+            focus:ring-offset-2 
+            transition-all duration-300 ease-in-out" (click)="onSearch()">Pesquisar</button>
+
+            <button class="ml-10
+            px-6 
+            py-3 
+            bg-none
+            text-gray-500 
+            font-semibold 
+            rounded-lg 
+            shadow-md 
+            border border-violet-400
+            outline-lime-900
+            hover:bg-sky-100
+            focus:outline-none 
+            focus:ring-2 
+            focus:ring-blue-500
+            focus:ring-offset-2 
+            transition-all duration-300 ease-in-out">
+                <a href="/cidadesfavoritas">Favoritos</a>
+            </button>
+
+            <div class="main-content">
+                
+            </div>
+
+            <div *ngIf="searchControl.invalid && (searchControl.dirty || searchControl.touched)" class="error-message">
+                <div *ngIf="searchControl.errors?.['pattern']">
+                    Apenas letras e espaços são permitidos.
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
