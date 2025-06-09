@@ -4,6 +4,10 @@ import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
-  ...appConfig,
-  providers: [provideHttpClient()]
+  // Use o spread operator para combinar os providers existentes de appConfig
+  // com os novos providers
+  providers: [
+    ...(appConfig.providers || []), // Garante que providers de appConfig sejam incluídos
+    provideHttpClient()
+  ]
 });
