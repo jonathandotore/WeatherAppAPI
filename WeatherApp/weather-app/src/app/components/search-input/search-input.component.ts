@@ -12,6 +12,7 @@ import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 export class SearchInputComponent {
   searchControl = new FormControl('', [ Validators.pattern(/^[a-zA-Z\s]*$/) ]);
+cidadesfavoritas: any;
 
   constructor(private searchCityService: SearchCityService) {}
 
