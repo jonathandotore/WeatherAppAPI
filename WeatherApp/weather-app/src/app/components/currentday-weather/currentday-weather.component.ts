@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SearchCityService } from '../../shared/search-city.service';
 import { ServiceResponse } from '../../../models/service-response';
+import { FavoriteCitiesService } from '../../shared/favorite-cities.service';
+
 
 @Component({
   selector: 'app-currentday-weather',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './currentday-weather.component.html',
-  styleUrl: './currentday-weather.component.scss'
 })
 
 export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
@@ -21,13 +22,16 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
   lastSuccessfulCity: string = 'São José do Rio Preto';
   loading: boolean = false;
   error: string = '';
+  isFavoriteCity: boolean = false;
 
   private citySubscription!: Subscription;
   private apiCallSubscription!: Subscription;
+  private favoriteStatusSubscription!: Subscription; //Monitora o etado do favorito
 
   constructor(
     private weatherService: WeatherService,
-    private searchCityService: SearchCityService) {}
+    private searchCityService: SearchCityService,
+    private favoriteCitiesService: FavoriteCitiesService ) {}
   
   ngOnInit(): void {
     //Carrega a cidade padrão
@@ -39,6 +43,11 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
         this.city = newCity.trim();
         this.getForecast();
       }
+    });
+
+    // Inscreve-se para monitorar o estado de favorito da cidade atual
+    this.favoriteStatusSubscription = this.favoriteCitiesService.favoriteCities$.subscribe(favorites => {
+      this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.city);
     });
   }
 
@@ -53,16 +62,29 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
         if (data !== null && data !== undefined)
         this.forecast = data;
         this.lastSuccessfulCity = this.city
+        this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.lastSuccessfulCity);
         this.loading = false;
         console.log(`Clima atual para ${this.city}:`,data)
       },
       error: (err) => {
         console.error(`Erro ao buscar clima para ${this.city}:`, err);
         this.error = "Erro ao tentar a busca na cidade solicitada. Verifique a cidade e tente novamente";
+        this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.lastSuccessfulCity);
         this.loading = false;
         this.forecast!;
       }
     });
+  }
+
+    // Método para adicionar/remover dos favoritos
+  toggleFavorite(): void {
+    if (!this.isFavoriteCity)
+      this.favoriteCitiesService.addFavoriteCity(this.city);
+    else
+      this.favoriteCitiesService.removeFavoriteCity(this.city);
+
+
+    
   }
 
   ngOnDestroy(): void {
@@ -72,5 +94,8 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
 
     if (this.apiCallSubscription)
       this.apiCallSubscription.unsubscribe();
+
+    if (this.favoriteStatusSubscription)
+      this.favoriteStatusSubscription.unsubscribe();
   }
 }
