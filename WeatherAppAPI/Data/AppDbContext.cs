@@ -8,5 +8,7 @@ namespace WeatherAppAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) :base(options) {}
 
         public DbSet<FavoriteCity> FavoriteCity { get; set; }
+        public DbSet<User> User{ get; set; }
     }
 }
+ 
