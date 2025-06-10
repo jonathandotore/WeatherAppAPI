@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { SearchCityService } from '../../shared/search-city.service';
 import { ServiceResponse } from '../../../models/service-response';
 import { FavoriteCitiesService } from '../../shared/favorite-cities.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -23,15 +24,19 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   error: string = '';
   isFavoriteCity: boolean = false;
+  isAuthenticated: boolean = false;
 
   private citySubscription!: Subscription;
   private apiCallSubscription!: Subscription;
-  private favoriteStatusSubscription!: Subscription; //Monitora o etado do favorito
+  private favoriteStatusSubscription!: Subscription; // Monitora o etado do favorito
+  private authSubscription!: Subscription; // Para monitorar o estado de autenticação
+ 
 
   constructor(
     private weatherService: WeatherService,
     private searchCityService: SearchCityService,
-    private favoriteCitiesService: FavoriteCitiesService ) {}
+    private favoriteCitiesService: FavoriteCitiesService,
+    private authService: AuthService) {}
   
   ngOnInit(): void {
     //Carrega a cidade padrão
@@ -48,6 +53,11 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
     // Inscreve-se para monitorar o estado de favorito da cidade atual
     this.favoriteStatusSubscription = this.favoriteCitiesService.favoriteCities$.subscribe(favorites => {
       this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.city);
+    });
+
+    // Inscreve-se para monitorar o estado de autenticação
+    this.authSubscription = this.authService.currentUser.subscribe(user => {
+      this.isAuthenticated = user != null && user.success;
     });
   }
 
@@ -76,19 +86,14 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
     });
   }
 
-    // Método para adicionar/remover dos favoritos
   toggleFavorite(): void {
     if (!this.isFavoriteCity)
       this.favoriteCitiesService.addFavoriteCity(this.city);
     else
       this.favoriteCitiesService.removeFavoriteCity(this.city);
-
-
-    
   }
 
   ngOnDestroy(): void {
-    // Desinscrever para evitar vazamento de memória
     if (this.citySubscription)
       this.citySubscription.unsubscribe();
 
@@ -97,5 +102,9 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
 
     if (this.favoriteStatusSubscription)
       this.favoriteStatusSubscription.unsubscribe();
+
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }
