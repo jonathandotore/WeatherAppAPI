@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center min-h-screen bg-opacity-5 bg-gradient-to-br from-blue-400 via-indigo-300 to-yellow-50">
-  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+  <div class="bg-transparent p-8 rounded-lg shadow-lg w-full max-w-md">
     <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Cadastrar</h2>
 
     <form (ngSubmit)="onRegister()">
@@ -10,7 +10,7 @@
           id="username"
           name="username"
           [(ngModel)]="registerRequest.username"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="bg-transparent shadow appearance-none border border-violet-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:bg-transparent"
           required
         />
       </div>
@@ -22,7 +22,7 @@
           id="password"
           name="password"
           [(ngModel)]="registerRequest.password"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          class=" bg-transparent shadow appearance-none border border-violet-400 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline focus:bg-transparent"
           required
         />
       </div>
@@ -37,8 +37,7 @@
 
       <button
         type="submit"
-        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-      >
+        class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
         Cadastrar
       </button>
     </form>

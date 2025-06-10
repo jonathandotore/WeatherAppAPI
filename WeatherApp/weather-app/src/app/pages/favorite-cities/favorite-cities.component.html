@@ -1,23 +1,23 @@
 <div class="container mx-auto p-4 sm:p-6 md:p-8">
-  <div class="bg-white shadow-lg rounded-lg p-6 md:p-8">
-    <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">Cidades Favoritas</h2>
+  <div class="min-h-screen bg-sky-100 bg-opacity-20 shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-500">Cidades Favoritas</h2>
 
-    <div *ngIf="favoriteCities.length === 0" class="text-center text-gray-600 text-lg py-8">
+    <div *ngIf="favoriteCities.length === 0" class="text-center text-white text-lg py-8">
       Você ainda não tem nenhuma cidade favorita.
       <br>Use a busca na página inicial para adicionar!
     </div>
 
     <ul *ngIf="favoriteCities.length > 0" class="space-y-4">
       <li *ngFor="let city of favoriteCities"
-          class="flex items-center justify-between p-4 bg-blue-50 rounded-md shadow-sm border border-blue-200">
-        <span class="text-xl font-semibold text-gray-800 capitalize">{{ city }}</span>
+          class="flex items-center justify-between p-4 bg-none rounded-md shadow-sm border border-violet-400">
+        <span class="text-xl font-semibold text-gray-500 capitalize">{{ city }}</span>
         <div class="flex space-x-2">
           <button (click)="viewWeather(city)"
-                  class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
+                  class="px-4 py-2 bg-fuchsia-600 border border-violet-400 text-white rounded-md hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200">
             Ver Clima
           </button>
           <button (click)="removeFavorite(city)"
-                  class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200">
+                  class="px-4 py-2 bg-fuchsia-600 border border-violet-400 text-white rounded-md hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200">
             Remover
           </button>
         </div>
