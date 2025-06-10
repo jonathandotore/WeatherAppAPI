@@ -33,7 +33,6 @@ export class FavoriteCitiesComponent {
   }
 
   viewWeather(city: string): void {
-    // Ao clicar em uma cidade favorita, navega para a rota principal e pesquisa essa cidade
     this.searchCityService.setCity(city);
     this.router.navigate(['/']);
   }
