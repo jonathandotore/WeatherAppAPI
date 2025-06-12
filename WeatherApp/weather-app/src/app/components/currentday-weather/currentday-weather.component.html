@@ -27,15 +27,15 @@
         </div>
         <div class="flex flex-col items-center">
           <span class="text-xl font-medium">Vento</span>
-          <span class="text-2xl">15 km/h</span>
+          <span class="text-2xl">{{ forecast.wind }}</span>
         </div>
         <div class="flex flex-col items-center">
           <span class="text-xl font-medium">Sensação</span>
-          <span class="text-2xl">27°C</span>
+          <span class="text-2xl"> {{ forecast.feels_like }}ºC </span>
         </div>
         <div class="flex flex-col items-center">
-          <span class="text-xl font-medium">Índice UV</span>
-          <span class="text-2xl">8 (Alto)</span>
+          <span class="text-xl font-medium">Pressão</span>
+          <span class="text-2xl"> {{ forecast.pressure }} </span>
         </div>
       </div>
     </section>

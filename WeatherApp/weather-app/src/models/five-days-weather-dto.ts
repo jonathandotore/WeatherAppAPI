@@ -3,4 +3,5 @@ export interface FiveDaysWeatherDto {
     minTemperature: number;
     maxTemperature: number;
     condition: string;
+    icon: string;
 }

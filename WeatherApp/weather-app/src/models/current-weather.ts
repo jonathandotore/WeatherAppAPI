@@ -6,4 +6,7 @@ export interface CurrentWeatherDto {
   condition: string;
   humidity: number;
   icon: string;
+  wind: number;
+  feels_like: number;
+  pressure: number;
 }

@@ -43,7 +43,6 @@ export class FavoriteCitiesService {
       // Se não estiver logado no início, apenas carrega do localStorage (se houver)
       this._favoriteCities.next(this.loadFavoriteCitiesFromLocalStorage());
     }
-
   }
   
   // Helper para obter os headers de autorização
@@ -85,6 +84,7 @@ export class FavoriteCitiesService {
     if (!currentFavorites.includes(normalizedCity)) {
       const updatedFavorites = [...currentFavorites, normalizedCity];
       this.saveFavoritesToLocalStorageAndNotify(updatedFavorites);
+      this.addFavoriteCityToBackend(city);
     }
   }
 
@@ -112,10 +112,10 @@ export class FavoriteCitiesService {
 
     const headers = this.getAuthHeaders();
 
-    this.http.get<FavoriteCityBackend[]>(`${this.apiURL}/userFavorites`, { headers }).pipe(
+    this.http.get<FavoriteCityBackend[]>(`${this.apiURL}`, { headers }).pipe(
       tap(backendFavorites => {
-        const favoriteCityNames = backendFavorites.map(fav => fav.cityName.toLowerCase()); // Normaliza para minúsculas
-        this.saveFavoritesToLocalStorageAndNotify(favoriteCityNames); // Atualiza local e notifica
+        const favoriteCityNames = backendFavorites.map(fav => fav.cityName.toLowerCase());
+        this.saveFavoritesToLocalStorageAndNotify(favoriteCityNames);
         console.log('Cidades favoritas carregadas do backend:', favoriteCityNames);
       }),
       catchError(error => {
@@ -134,7 +134,7 @@ export class FavoriteCitiesService {
 
     if (currentFavorites.includes(normalizedCity)) {
       console.log(`"${city}" já é uma cidade favorita.`);
-      return; // Já é favorito, não faz nada
+      return;
     }
 
     // Adiciona localmente primeiro para resposta rápida da UI
