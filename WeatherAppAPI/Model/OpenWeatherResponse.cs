@@ -37,6 +37,12 @@ namespace WeatherAppAPI.Model
         {
             [JsonProperty("description")]
             public string Description { get; set; } = string.Empty;
+
+            [JsonProperty("main")]
+            public string Main { get; set; } = string.Empty;
+
+            [JsonProperty("icon")]
+            public string Icon { get; set; } = string.Empty;
         }
         #endregion
     }

@@ -39,13 +39,17 @@ namespace WeatherAppAPI.Services
 
                 response.Data = new CurrentWeatherDto()
                 {
+                    Id = weatherResponse.Id,
                     CityName = weatherResponse.Name,
                     Temperature = weatherResponse.Main.Temp,
                     MinTemperature = weatherResponse.Main.TempMin,
                     MaxTemperature = weatherResponse.Main.TempMax,
+                    Pressure = weatherResponse.Main.Pressure,
                     Condition = weatherResponse.Weather.First().Description,
                     Humidity = weatherResponse.Main.Humidity,
-                    Icon = weatherResponse.Weather.First().Icon
+                    Icon = weatherResponse.Weather.First().Icon,
+                    Feels_like = weatherResponse.Main.FeelsLike,
+                    Wind = weatherResponse.Wind.Speed
                 };
                 
                 response.Message = "City weather succesfully found!";
@@ -95,13 +99,16 @@ namespace WeatherAppAPI.Services
                     double minTemperature = day.Min(t => t.MainForecast.MinTemperature);
                     double maxTemperature = day.Max(t => t.MainForecast.MaxTemperature);
                     string condition = day.First().Weather.First().Description;
+                    string icon = day.First().Weather.First().Icon;
+
 
                     result.Add(new WeatherAllDayDto()
                     {
                         Date = day.Key,
                         MinTemperature = minTemperature,
                         MaxTemperature = maxTemperature,
-                        Condition = condition
+                        Condition = condition,
+                        Icon = icon,
                     });
                 }
 

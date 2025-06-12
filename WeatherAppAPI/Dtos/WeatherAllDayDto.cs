@@ -6,5 +6,6 @@
         public double MinTemperature { get; set; }
         public double MaxTemperature { get; set; }
         public string Condition { get; set; } = string.Empty;
+        public string Icon { get; set; } = string.Empty;
     }
 }
