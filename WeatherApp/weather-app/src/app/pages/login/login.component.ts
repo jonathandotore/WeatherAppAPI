@@ -22,10 +22,8 @@ export class LoginComponent {
     this.errorMessage = '';
     this.authService.login(this.loginRequest).subscribe({
       next: (response) => {        
-        console.log('Logado com sucesso:', response.message);
       },
       error: (errorResponse) => {
-        console.error('Falha ao efetuar o login:', errorResponse);
         this.errorMessage = errorResponse.message || 'Falha ao efetuar o login. Por favor, cheque suas credenciais e tente novamente.';
       }
     });

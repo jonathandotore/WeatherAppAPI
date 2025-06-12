@@ -74,10 +74,8 @@ export class CurrentdayWeatherComponent implements OnInit, OnDestroy {
         this.lastSuccessfulCity = this.city
         this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.lastSuccessfulCity);
         this.loading = false;
-        console.log(`Clima atual para ${this.city}:`,data)
       },
-      error: (err) => {
-        console.error(`Erro ao buscar clima para ${this.city}:`, err);
+      error: () => {
         this.error = "Erro ao tentar a busca na cidade solicitada. Verifique a cidade e tente novamente";
         this.isFavoriteCity = this.favoriteCitiesService.isFavorite(this.lastSuccessfulCity);
         this.loading = false;
